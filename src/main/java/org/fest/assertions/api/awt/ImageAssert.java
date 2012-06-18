@@ -24,7 +24,7 @@ import java.util.Comparator;
 
 /**
  * Assertion methods for images. <p> To create an instance of this class, invoke <code>{@link
- * org.fest.assertions.api.awt.Assertions#assertThat(BufferedImage)}</code>. </p>
+ * AwtAssertions#assertThat(BufferedImage)}</code>. </p>
  *
  * @author Yvonne Wang
  * @author Alex Ruiz

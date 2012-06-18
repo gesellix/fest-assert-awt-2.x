@@ -23,7 +23,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
 /**
- * Tests for <code>{@link Assertions#assertThat(BufferedImage)}</code>.
+ * Tests for <code>{@link AwtAssertions#assertThat(BufferedImage)}</code>.
  *
  * @author Alex Ruiz
  */
@@ -31,14 +31,14 @@ public class Assertions_assertThat_with_BufferedImage_Test {
 
   @Test
   public void should_create_Assert() {
-    ImageAssert assertions = Assertions.assertThat(fivePixelBlueImage());
+    ImageAssert assertions = AwtAssertions.assertThat(fivePixelBlueImage());
     assertNotNull(assertions);
   }
 
   @Test
   public void should_pass_actual() {
     BufferedImage actual = fivePixelBlueImage();
-    ImageAssert assertions = Assertions.assertThat(actual);
+    ImageAssert assertions = AwtAssertions.assertThat(actual);
     assertSame(actual, assertions.getActual());
   }
 }
