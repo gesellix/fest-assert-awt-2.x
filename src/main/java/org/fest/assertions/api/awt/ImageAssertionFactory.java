@@ -10,7 +10,7 @@ public class ImageAssertionFactory implements AssertionFactory<BufferedImage, Im
     return new ImageAssert(actual);
   }
 
-  public boolean supports(Object actual) {
-    return actual.getClass().isAssignableFrom(BufferedImage.class);
+  public Class<BufferedImage> getSupportedType() {
+    return BufferedImage.class;
   }
 }
