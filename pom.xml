@@ -12,7 +12,7 @@
   <parent>
     <groupId>org.easytesting</groupId>
     <artifactId>fest</artifactId>
-    <version>1.0.11</version>
+    <version>1.0.13</version>
   </parent>
   <mailingLists>
     <mailingList>
@@ -23,13 +23,13 @@
     </mailingList>
   </mailingLists>
   <scm>
-    <developerConnection>scm:git:git@github.com:alexruiz/fest-assert-2.x.git</developerConnection>
-    <connection>scm:git:git://github.com/alexruiz/fest-assert-2.x.git</connection>
-    <url>https://github.com/alexruiz/fest-assert-2.x</url>
+    <developerConnection>scm:git:git@github.com:gesellix/fest-assert-awt-2.x.git</developerConnection>
+    <connection>scm:git:git://github.com/gesellix/fest-assert-awt-2.x.git</connection>
+    <url>https://github.com/gesellix/fest-assert-awt-2.x</url>
   </scm>
   <issueManagement>
         <system>github</system>
-        <url>https://github.com/alexruiz/fest-assert-2.x/issues</url>
+        <url>https://github.com/gesellix/fest-assert-awt-2.x/issues</url>
   </issueManagement>
   <dependencies>
     <dependency>
@@ -53,7 +53,7 @@
     <dependency>
       <groupId>org.easytesting</groupId>
       <artifactId>fest-test</artifactId>
-      <version>2.0</version>
+      <version>2.1M1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
