@@ -11,3 +11,7 @@ English, making it easier for non-technical people to read test code.
 For more details please visit :
 
 * [FEST's github wiki](https://github.com/alexruiz/fest-assert-2.x/wiki) for the most up to date documentation (work in progress but worth a look !).
+
+Current build status:
+
+[![Build Status](https://secure.travis-ci.org/gesellix/fest-assert-awt-2.x.png?branch=master)](http://travis-ci.org/gesellix/fest-assert-awt-2.x)
