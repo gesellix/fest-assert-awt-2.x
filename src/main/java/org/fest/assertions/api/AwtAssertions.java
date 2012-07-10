@@ -25,14 +25,10 @@ import java.awt.image.BufferedImage;
  * For example:
  *
  * <pre>
- * int removed = employees.removeFired();
- * {@link Assertions#assertThat(int) assertThat}(removed).{@link IntegerAssert#isZero isZero}();
- *
- * List&lt;Employee&gt; newEmployees = employees.hired(TODAY);
- * {@link Assertions#assertThat(Iterable) assertThat}(newEmployees).{@link IterableAssert#hasSize(int) hasSize}(6);
+ * BufferedImage image = new BufferedImage(10, 10, TYPE_INT_RGB);
+ * {@link AwtAssertions#assertThat(java.awt.image.BufferedImage) assertThat}(image).{@link ImageAssert#hasSize(java.awt.Dimension) hasSize}(new Dimension(10, 10));
  * </pre>
  * </p>
- *
  * @author Tobias Gesellchen
  */
 public class AwtAssertions {
