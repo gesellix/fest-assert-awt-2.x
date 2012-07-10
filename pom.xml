@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.easytesting</groupId>
@@ -28,20 +29,14 @@
     <url>https://github.com/gesellix/fest-assert-awt-2.x</url>
   </scm>
   <issueManagement>
-        <system>github</system>
-        <url>https://github.com/gesellix/fest-assert-awt-2.x/issues</url>
+    <system>github</system>
+    <url>https://github.com/gesellix/fest-assert-awt-2.x/issues</url>
   </issueManagement>
   <dependencies>
     <dependency>
       <groupId>org.easytesting</groupId>
       <artifactId>fest-assert-core</artifactId>
       <version>${project.version}</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-util</artifactId>
-      <version>1.2.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
