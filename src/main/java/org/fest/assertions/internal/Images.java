@@ -1,27 +1,18 @@
 /*
  * Created on Oct 20, 2010
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
- *
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ * 
  * Copyright @2010-2011 the original author or authors.
  */
 package org.fest.assertions.internal;
-
-import org.fest.assertions.core.AssertionInfo;
-import org.fest.assertions.data.Offset;
-import org.fest.assertions.data.RgbColor;
-import org.fest.assertions.error.ErrorMessageFactory;
-import org.fest.util.VisibleForTesting;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 import static org.fest.assertions.data.Offset.offset;
 import static org.fest.assertions.data.RgbColor.color;
@@ -29,10 +20,17 @@ import static org.fest.assertions.error.ShouldBeEqualColors.shouldBeEqualColors;
 import static org.fest.assertions.error.ShouldBeEqualImages.shouldBeEqualImages;
 import static org.fest.assertions.error.ShouldHaveSize.shouldHaveSize;
 import static org.fest.assertions.error.ShouldNotBeEqualImages.shouldNotBeEqualImages;
-import static org.fest.assertions.internal.ColorComparisonResult.ARE_EQUAL;
-import static org.fest.assertions.internal.ColorComparisonResult.notEqual;
+import static org.fest.assertions.internal.ColorComparisonResult.*;
 import static org.fest.assertions.internal.CommonValidations.checkOffsetIsNotNull;
 import static org.fest.util.Objects.areEqual;
+
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+
+import org.fest.assertions.core.AssertionInfo;
+import org.fest.assertions.data.*;
+import org.fest.assertions.error.ErrorMessageFactory;
+import org.fest.util.VisibleForTesting;
 
 /**
  * Reusable assertions for <code>{@link BufferedImage}</code>s.
@@ -52,9 +50,11 @@ public class Images {
     return INSTANCE;
   }
 
-  @VisibleForTesting Failures failures = Failures.instance();
+  @VisibleForTesting
+  Failures failures = Failures.instance();
 
-  @VisibleForTesting Images() {}
+  @VisibleForTesting
+  Images() {}
 
   /**
    * Asserts that two images are equal. Two images are equal if:
@@ -75,15 +75,14 @@ public class Images {
    * Asserts that two images are equal. Two images are equal if:
    * <ol>
    * <li>they have the same size</li>
-   * <li>the difference between the RGB values of the color at each pixel is less than or equal to the given
-   * offset</li>
+   * <li>the difference between the RGB values of the color at each pixel is less than or equal to the given offset</li>
    * </ol>
    * @param info contains information about the assertion.
    * @param actual the actual image.
    * @param expected the expected image.
-   * @param offset helps decide if the color of two pixels are similar: two pixels that are identical to the human eye
-   * may still have slightly different color values. For example, by using an offset of 1 we can indicate that a blue
-   * value of 60 is similar to a blue value of 61.
+   * @param offset helps decide if the color of two pixels are similar: two pixels that are identical to the human eye may still
+   *          have slightly different color values. For example, by using an offset of 1 we can indicate that a blue value of 60
+   *          is similar to a blue value of 61.
    * @throws NullPointerException if the given offset is {@code null}.
    * @throws AssertionError if the actual image is not equal to the expected one.
    */
@@ -165,7 +164,8 @@ public class Images {
     return failures.failure(info, shouldHaveSize(image, actual, expected));
   }
 
-  @VisibleForTesting static Dimension sizeOf(BufferedImage image) {
+  @VisibleForTesting
+  static Dimension sizeOf(BufferedImage image) {
     return new Dimension(image.getWidth(), image.getHeight());
   }
 }
