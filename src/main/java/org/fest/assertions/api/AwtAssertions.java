@@ -14,8 +14,6 @@
  */
 package org.fest.assertions.api;
 
-import org.fest.assertions.util.ImageReader;
-
 import java.awt.image.BufferedImage;
 
 /**

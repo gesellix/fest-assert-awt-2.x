@@ -34,7 +34,7 @@ import org.fest.util.VisibleForTesting;
 
 /**
  * Reusable assertions for <code>{@link BufferedImage}</code>s.
- *
+ * 
  * @author Yvonne Wang
  */
 public class Images {

@@ -1,5 +1,5 @@
 /*
- * Created on Oct 21, 2010
+ * Created on Jan 24, 2010
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
  * License. You may obtain a copy of the License at
@@ -10,17 +10,18 @@
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  * 
- * Copyright @2010-2011 the original author or authors.
+ * Copyright @2011 the original author or authors.
  */
-package org.fest.assertions.internal;
+package org.fest.assertions.internal.images;
 
 import static java.awt.Color.BLUE;
+
 import static org.fest.assertions.data.Offset.offset;
 import static org.fest.assertions.data.Point.atPoint;
 import static org.fest.assertions.error.ShouldBeEqualColors.shouldBeEqualColors;
 import static org.fest.assertions.error.ShouldBeEqualImages.shouldBeEqualImages;
 import static org.fest.assertions.error.ShouldHaveSize.shouldHaveSize;
-import static org.fest.assertions.internal.Images.sizeOf;
+import static org.fest.test.ErrorMessages.offsetIsNull;
 import static org.fest.assertions.test.AwtTestData.blue;
 import static org.fest.assertions.test.AwtTestData.fivePixelBlueImage;
 import static org.fest.assertions.test.AwtTestData.fivePixelYellowImage;
@@ -28,60 +29,62 @@ import static org.fest.assertions.test.AwtTestData.newImage;
 import static org.fest.assertions.test.AwtTestData.someInfo;
 import static org.fest.assertions.test.AwtTestData.yellow;
 import static org.fest.test.TestFailures.failBecauseExpectedAssertionErrorWasNotThrown;
-import static org.mockito.Mockito.*;
 
+import static org.mockito.Mockito.verify;
+
+import java.awt.Color;
 import java.awt.image.BufferedImage;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import org.fest.assertions.core.AssertionInfo;
 import org.fest.assertions.data.Offset;
-import org.junit.*;
+import org.fest.assertions.internal.Images;
+import org.fest.assertions.internal.ImagesBaseTest;
 
 /**
- * Tests for <code>{@link Images#assertEqual(AssertionInfo, BufferedImage, BufferedImage)}</code>.
+ * Tests for <code>{@link Images#assertEqual(AssertionInfo, BufferedImage, BufferedImage, Offset)}</code>.
  * 
  * @author Yvonne Wang
+ * @author Joel Costigliola
  */
-public class Images_assertEqual_Test {
+public class Images_assertEqual_with_offset_Test extends ImagesBaseTest {
 
-  private static BufferedImage actual;
-  private static Offset<Integer> offset;
-
-  @BeforeClass
-  public static void setUpOnce() {
-    actual = fivePixelBlueImage();
-    offset = offset(0);
-  }
-
-  private Failures failures;
-  private Images images;
-
+  @Override
   @Before
   public void setUp() {
-    failures = spy(new Failures());
-    images = new Images();
-    images.failures = failures;
+    super.setUp();
+    offset = offset(5);
+  }
+
+  @Test
+  public void should_throw_error_if_Offset_is_null() {
+    thrown.expectNullPointerException(offsetIsNull());
+    images.assertEqual(someInfo(), actual, actual, null);
   }
 
   @Test
   public void should_pass_if_images_are_equal() {
-    images.assertEqual(someInfo(), actual, newImage(5, 5, BLUE));
+    Color similarBlue = new Color(0, 0, 250);
+    images.assertEqual(someInfo(), actual, newImage(5, 5, similarBlue), offset);
   }
 
   @Test
   public void should_pass_if_images_are_same() {
-    images.assertEqual(someInfo(), actual, actual);
+    images.assertEqual(someInfo(), actual, actual, offset);
   }
 
   @Test
   public void should_pass_if_both_images_are_null() {
-    images.assertEqual(someInfo(), null, null);
+    images.assertEqual(someInfo(), null, null, offset);
   }
 
   @Test
   public void should_fail_if_actual_is_null_and_expected_is_not() {
     AssertionInfo info = someInfo();
     try {
-      images.assertEqual(someInfo(), null, fivePixelBlueImage());
+      images.assertEqual(someInfo(), null, fivePixelBlueImage(), offset);
     } catch (AssertionError e) {
       verifyFailureThrownWhenImagesAreNotEqual(info);
       return;
@@ -93,7 +96,7 @@ public class Images_assertEqual_Test {
   public void should_fail_if_expected_is_null_and_actual_is_not() {
     AssertionInfo info = someInfo();
     try {
-      images.assertEqual(someInfo(), actual, null);
+      images.assertEqual(someInfo(), actual, null, offset);
     } catch (AssertionError e) {
       verifyFailureThrownWhenImagesAreNotEqual(info);
       return;
@@ -110,7 +113,7 @@ public class Images_assertEqual_Test {
     AssertionInfo info = someInfo();
     BufferedImage expected = newImage(6, 6, BLUE);
     try {
-      images.assertEqual(info, actual, expected);
+      images.assertEqual(info, actual, expected, offset);
     } catch (AssertionError e) {
       verify(failures).failure(info, shouldHaveSize(actual, sizeOf(actual), sizeOf(expected)));
       return;
@@ -123,7 +126,7 @@ public class Images_assertEqual_Test {
     AssertionInfo info = someInfo();
     BufferedImage expected = fivePixelYellowImage();
     try {
-      images.assertEqual(info, actual, expected);
+      images.assertEqual(info, actual, expected, offset);
     } catch (AssertionError e) {
       verify(failures).failure(info, shouldBeEqualColors(yellow(), blue(), atPoint(0, 0), offset));
       return;

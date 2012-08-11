@@ -12,50 +12,37 @@
  * 
  * Copyright @2010-2011 the original author or authors.
  */
-package org.fest.assertions.api;
+package org.fest.assertions.api.image;
 
-import static junit.framework.Assert.assertSame;
-import static org.fest.assertions.test.AwtTestData.fivePixelBlueImage;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
 
 import java.awt.Dimension;
 
-import org.fest.assertions.internal.Images;
-import org.junit.*;
+import org.fest.assertions.api.ImageAssert;
+import org.fest.assertions.api.ImageAssertBaseTest;
+import org.junit.BeforeClass;
 
 /**
  * Tests for <code>{@link ImageAssert#hasSize(Dimension)}</code>.
  * 
  * @author Yvonne Wang
  */
-public class ImageAssert_hasSize_Test {
+public class ImageAssert_hasSize_Test extends ImageAssertBaseTest {
 
   private static Dimension size;
 
   @BeforeClass
-  public static void setUpOnce() {
+  public static void beforeOnce() {
     size = new Dimension(6, 8);
   }
 
-  private Images images;
-  private ImageAssert assertions;
-
-  @Before
-  public void setUp() {
-    images = mock(Images.class);
-    assertions = new ImageAssert(fivePixelBlueImage());
-    assertions.images = images;
+  @Override
+  protected ImageAssert invoke_api_method() {
+    return assertions.hasSize(size);
   }
 
-  @Test
-  public void should_verify_that_actual_has_expected_size() {
-    assertions.hasSize(size);
-    verify(images).assertHasSize(assertions.info, assertions.actual, size);
-  }
-
-  @Test
-  public void should_return_this() {
-    ImageAssert returned = assertions.hasSize(size);
-    assertSame(assertions, returned);
+  @Override
+  protected void verify_internal_effects() {
+    verify(images).assertHasSize(getInfo(assertions), getActual(assertions), size);
   }
 }

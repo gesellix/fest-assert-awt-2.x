@@ -1,5 +1,5 @@
 /*
- * Created on Nov 29, 2010
+ * Created on Aug 02, 2012
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
  * License. You may obtain a copy of the License at
@@ -15,29 +15,33 @@
 package org.fest.assertions.api;
 
 import static org.fest.assertions.test.AwtTestData.fivePixelBlueImage;
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 import java.awt.image.BufferedImage;
 
-import org.junit.Test;
+import org.fest.assertions.internal.Images;
 
 /**
- * Tests for <code>{@link AwtAssertions#assertThat(BufferedImage)}</code>.
+ * Base class for {@link ImageAssert} tests.
  * 
- * @author Alex Ruiz
+ * @author Olivier Michallat
  */
-public class Assertions_assertThat_with_BufferedImage_Test {
+public abstract class ImageAssertBaseTest extends BaseTestTemplate<ImageAssert, BufferedImage> {
+  protected Images images;
 
-  @Test
-  public void should_create_Assert() {
-    ImageAssert assertions = AwtAssertions.assertThat(fivePixelBlueImage());
-    assertNotNull(assertions);
+  @Override
+  protected ImageAssert create_assertions() {
+    return new ImageAssert(fivePixelBlueImage());
   }
 
-  @Test
-  public void should_pass_actual() {
-    BufferedImage actual = fivePixelBlueImage();
-    ImageAssert assertions = AwtAssertions.assertThat(actual);
-    assertSame(actual, assertions.actual);
+  @Override
+  protected void inject_internal_objects() {
+    super.inject_internal_objects();
+    images = mock(Images.class);
+    assertions.images = images;
+  }
+
+  protected Images getImages(ImageAssert someAssertions) {
+    return someAssertions.images;
   }
 }

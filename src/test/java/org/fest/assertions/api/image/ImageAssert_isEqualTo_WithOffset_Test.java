@@ -12,53 +12,42 @@
  * 
  * Copyright @2010-2011 the original author or authors.
  */
-package org.fest.assertions.api;
+package org.fest.assertions.api.image;
 
-import static junit.framework.Assert.assertSame;
 import static org.fest.assertions.data.Offset.offset;
-import static org.fest.assertions.test.AwtTestData.*;
-import static org.mockito.Mockito.*;
+import static org.fest.assertions.test.AwtTestData.fivePixelYellowImage;
+import static org.mockito.Mockito.verify;
 
 import java.awt.image.BufferedImage;
 
+import org.fest.assertions.api.ImageAssert;
+import org.fest.assertions.api.ImageAssertBaseTest;
 import org.fest.assertions.data.Offset;
-import org.fest.assertions.internal.Images;
-import org.junit.*;
+import org.junit.BeforeClass;
 
 /**
  * Tests for <code>{@link ImageAssert#isEqualTo(BufferedImage, Offset)}</code>.
  * 
  * @author Yvonne Wang
  */
-public class ImageAssert_isEqualTo_WithOffset_Test {
+public class ImageAssert_isEqualTo_WithOffset_Test extends ImageAssertBaseTest {
 
   private static Offset<Integer> offset;
 
   @BeforeClass
-  public static void setUpOnce() {
+  public static void beforeOnce() {
     offset = offset(6);
   }
 
-  private Images images;
-  private ImageAssert assertions;
+  private final BufferedImage expected = fivePixelYellowImage();
 
-  @Before
-  public void setUp() {
-    images = mock(Images.class);
-    assertions = new ImageAssert(fivePixelBlueImage());
-    assertions.images = images;
+  @Override
+  protected ImageAssert invoke_api_method() {
+    return assertions.isEqualTo(expected, offset);
   }
 
-  @Test
-  public void should_verify_that_actual_is_equal_to_expected() {
-    BufferedImage expected = fivePixelYellowImage();
-    assertions.isEqualTo(expected, offset);
-    verify(images).assertEqual(assertions.info, assertions.actual, expected, offset);
-  }
-
-  @Test
-  public void should_return_this() {
-    ImageAssert returned = assertions.isEqualTo(fivePixelBlueImage(), offset);
-    assertSame(assertions, returned);
+  @Override
+  protected void verify_internal_effects() {
+    verify(images).assertEqual(getInfo(assertions), getActual(assertions), expected, offset);
   }
 }
