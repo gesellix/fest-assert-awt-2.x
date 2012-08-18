@@ -26,7 +26,7 @@ import static org.fest.assertions.test.AwtTestData.fivePixelYellowImage;
 import static org.fest.assertions.test.AwtTestData.newImage;
 import static org.fest.assertions.test.AwtTestData.someInfo;
 import static org.fest.assertions.test.AwtTestData.yellow;
-import static org.fest.test.TestFailures.failBecauseExpectedAssertionErrorWasNotThrown;
+import static org.fest.util.TestFailures.failBecauseExpectedAssertionErrorWasNotThrown;
 
 import static org.mockito.Mockito.verify;
 

@@ -14,7 +14,7 @@
  */
 package org.fest.assertions.api.image;
 
-import static org.fest.test.ExpectedException.none;
+import static org.fest.util.ExpectedException.none;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.awt.image.BufferedImage;
@@ -22,7 +22,7 @@ import java.util.Comparator;
 
 import org.fest.assertions.api.ImageAssert;
 import org.fest.assertions.api.ImageAssertBaseTest;
-import org.fest.test.ExpectedException;
+import org.fest.util.ExpectedException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
