@@ -13,7 +13,7 @@
   <parent>
     <groupId>org.easytesting</groupId>
     <artifactId>fest</artifactId>
-    <version>1.0.15-MODULARIZATION-SNAPSHOT</version>
+    <version>1.0.14</version>
   </parent>
   <mailingLists>
     <mailingList>
@@ -48,6 +48,7 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
+      <version>1.9.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
